@@ -1,0 +1,6 @@
+EpisodeIntent what is an episode from season {Season}
+EpisodeIntent tell me an episode from season {Season}
+EpisodeIntent ask for an episode from season {Season}
+EpisodeIntent give me an episode from season {Season}
+EpisodeIntent what's an episode from season {Season}
+EpisodeIntent find an episode from season {Season}

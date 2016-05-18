@@ -1,0 +1,13 @@
+{
+  "intents": [
+    {
+      "intent": "EpisodeIntent",
+      "slots": [
+        {
+          "name": "Season",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    }
+  ]
+}
