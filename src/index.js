@@ -14,7 +14,7 @@ Boomhauer.prototype.constructor = Boomhauer;
 
 Boomhauer.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
   var speechText = "Ask me for an episode of King of the Hill. You can even specify a season.";
-  var repromptText = "TODO TODO TODO";
+  var repromptText = "For example, ask me to give you an episode from season one.";
 
   response.ask(speechText, repromptText);
 };
