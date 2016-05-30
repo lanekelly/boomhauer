@@ -1,10 +1,4 @@
-// king of the hill seasons
-// each season has a list of episodes with various data attached
-// - episode number
-// - description
-// - title
-
-module.exports = {
+ {
   "1": [
     {
       "number": 1,
@@ -67,4 +61,4 @@ module.exports = {
       "description": "Bobby is invited to his first boy/girl party, and Peggy is horrified when she discovers him playing Spin the Bottle with one of Luanne's plastic beauty school heads."
     }
   ]
-};
+}
