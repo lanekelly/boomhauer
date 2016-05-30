@@ -22,30 +22,43 @@ Boomhauer.prototype.eventHandlers.onLaunch = function onLaunch(launchRequest, se
 Boomhauer.prototype.intentHandlers = {
   EpisodeIntent(intent, session, response) {
     const seasonSlot = intent.slots.Season;
-
+    const seasonErrorResp = 'I did not understand the season you wanted.';
     let seasonNumber;
     if (seasonSlot && seasonSlot.value) {
-      // check if converting is really necessary
-      // might need to convert to a Number instead
-      seasonNumber = seasonSlot.value.toLowerCase();
+      if (seasonSlot.value !== '?') {
+        seasonNumber = seasonSlot.value;
+      } else {
+        console.info('The season appeared as "?"');
+        response.tell({
+          speech: seasonErrorResp,
+          type: AlexaSkill.speechOutputType.PLAIN_TEXT
+        });
+
+        return;
+      }
     } else {
+      console.info('No season value provided');
       response.tell({
-        speech: "Couldn't parse the season number",
+        speech: seasonErrorResp,
         type: AlexaSkill.speechOutputType.PLAIN_TEXT
       });
 
       return;
     }
 
-    let resp = '';
-
+    let resp;
     const season = Episodes[seasonNumber];
     if (season) {
       // for now, just get first in list
       const episode = season[0];
       resp = `In episode ${episode.number}, titled ${episode.title}, ${episode.description}`;
     } else {
-      resp = `No data for season ${seasonNumber}`;
+      console.warn(`Request for unsupported season: ${seasonNumber}`);
+      if (seasonNumber > 13) {
+        resp = 'King of the Hill only aired for 13 seasons. Try again.';
+      } else {
+        resp = `I don't have data for season ${seasonNumber} at this time.`;
+      }
     }
 
     const speechOutput = {

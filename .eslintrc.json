@@ -1,4 +1,7 @@
 {
+    "env": {
+        "node": true
+    },
     "extends": "airbnb",
     "installedESLint": true,
     "plugins": [
@@ -6,6 +9,7 @@
     ],
     "rules": {
         "comma-dangle": "off",
-        "strict": "off"
+        "strict": "off",
+        "no-console": "off"
     }
 }
