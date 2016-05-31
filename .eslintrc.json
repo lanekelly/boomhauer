@@ -10,6 +10,7 @@
     "rules": {
         "comma-dangle": "off",
         "strict": "off",
+        "max-len": "off",
         "no-console": "off"
     }
 }

@@ -19,6 +19,11 @@ Boomhauer.prototype.eventHandlers.onLaunch = function onLaunch(launchRequest, se
   response.ask(speechText, repromptText);
 };
 
+function getEpisodeNumber(totalEpisodes) {
+  // random returns [0, 1)
+  return Math.floor(Math.random() * totalEpisodes);
+}
+
 Boomhauer.prototype.intentHandlers = {
   EpisodeIntent(intent, session, response) {
     const seasonSlot = intent.slots.Season;
@@ -49,9 +54,14 @@ Boomhauer.prototype.intentHandlers = {
     let resp;
     const season = Episodes[seasonNumber];
     if (season) {
-      // for now, just get first in list
-      const episode = season[0];
-      resp = `In episode ${episode.number}, titled ${episode.title}, ${episode.description}`;
+      const episodeNumber = getEpisodeNumber(season.length);
+      const episode = season[episodeNumber];
+      console.info(`Requested season: ${seasonNumber}, episode: ${episode.number}`);
+      if (episodeNumber + 1 === season.length) {
+        resp = `In episode ${episode.number}, the season finale titled ${episode.title}, ${episode.description}`;
+      } else {
+        resp = `In episode ${episode.number}, titled ${episode.title}, ${episode.description}`;
+      }
     } else {
       console.warn(`Request for unsupported season: ${seasonNumber}`);
       if (seasonNumber > 13) {
