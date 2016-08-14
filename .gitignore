@@ -34,3 +34,12 @@ node_modules
 
 # zip for Lambda
 *.zip
+
+# assets
+assets/
+
+# local files
+devlog.txt
+event.json
+.env
+

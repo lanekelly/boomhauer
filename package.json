@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "alexa-sdk": "^1.0.3",
+    "dotenv": "^2.0.0"
+  },
   "devDependencies": {
     "eslint": "^2.10.2",
     "eslint-config-airbnb": "^9.0.1",

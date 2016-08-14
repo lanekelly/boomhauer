@@ -2,31 +2,51 @@
 
 'use strict';
 
-const AlexaSkill = require('./AlexaSkill');
+// load environment variables
+require('dotenv').config();
+
+// dotenv puts all variables in process.env
+const APP_ID = process.env.ALEXA_APP_ID;
+
 const Episodes = require('./episodes');
-
-const Boomhauer = function Boomhauer() {
-  AlexaSkill.call(this); // add APP_ID here later
-};
-
-Boomhauer.prototype = Object.create(AlexaSkill.prototype);
-Boomhauer.prototype.constructor = Boomhauer;
-
-Boomhauer.prototype.eventHandlers.onLaunch = function onLaunch(launchRequest, session, response) {
-  const speechText = 'Ask me for an episode of King of the Hill. You can even specify a season.';
-  const repromptText = 'For example, ask me to give you an episode from season one.';
-
-  response.ask(speechText, repromptText);
-};
+const Alexa = require('alexa-sdk');
 
 function getEpisodeNumber(totalEpisodes) {
   // random returns [0, 1)
   return Math.floor(Math.random() * totalEpisodes);
 }
 
-Boomhauer.prototype.intentHandlers = {
-  EpisodeIntent(intent, session, response) {
-    const seasonSlot = intent.slots.Season;
+const handlers = {
+  LaunchRequest() {
+    const speechText = 'Ask the Arlen Bystander for an episode of King of the Hill. You can even specify a season. Which season number would you like?';
+    const repromptText = 'For example, ask me to give you an episode from season one.';
+
+    this.emit(':ask', speechText, repromptText);
+  },
+
+  'AMAZON.HelpIntent': function HelpIntent() {
+    const speechText = 'The Arlen Bystander is the mythical town newspaper from the television series King of the Kill. ' +
+      'Ask for an episode from a particular season, and the Bystander will pick one at random, providing an episode title, ' +
+      'number, and description. Now, which season number would you like?';
+    const repromptText = 'Which season number would you like?';
+
+    this.emit(':ask', speechText, repromptText);
+  },
+
+  'AMAZON.StopIntent': function StopIntent() {
+    const speechText = 'Goodbye shuai guh';
+
+    this.emit(':tell', speechText);
+  },
+
+  'AMAZON.CancelIntent': function CancelIntent() {
+    const speechText = 'Goodbye shuai guh';
+
+    this.emit(':tell', speechText);
+  },
+
+  EpisodeIntent() {
+    const seasonSlot = this.event.request.intent.slots.Season;
     const seasonErrorResp = 'I did not understand the season you wanted.';
     let seasonNumber;
     if (seasonSlot && seasonSlot.value) {
@@ -34,19 +54,12 @@ Boomhauer.prototype.intentHandlers = {
         seasonNumber = seasonSlot.value;
       } else {
         console.info('The season appeared as "?"');
-        response.tell({
-          speech: seasonErrorResp,
-          type: AlexaSkill.speechOutputType.PLAIN_TEXT
-        });
-
+        this.emit(':tell', seasonErrorResp);
         return;
       }
     } else {
       console.info('No season value provided');
-      response.tell({
-        speech: seasonErrorResp,
-        type: AlexaSkill.speechOutputType.PLAIN_TEXT
-      });
+      this.emit(':tell', seasonErrorResp);
 
       return;
     }
@@ -56,7 +69,7 @@ Boomhauer.prototype.intentHandlers = {
     if (season) {
       const episodeNumber = getEpisodeNumber(season.length);
       const episode = season[episodeNumber];
-      console.info(`Requested season: ${seasonNumber}, episode: ${episode.number}`);
+      console.info(`Requested season: ${seasonNumber}, returning episode: ${episode.number}`);
       if (episodeNumber + 1 === season.length) {
         resp = `In episode ${episode.number}, the season finale titled ${episode.title}, ${episode.description}`;
       } else {
@@ -71,16 +84,14 @@ Boomhauer.prototype.intentHandlers = {
       }
     }
 
-    const speechOutput = {
-      speech: resp,
-      type: AlexaSkill.speechOutputType.PLAIN_TEXT
-    };
-
-    response.tellWithCard(speechOutput, 'King of the Hill', resp);
+    this.emit(':tellWithCard', resp, 'King of the Hill', resp);
   }
 };
 
 exports.handler = function handler(event, context) {
-  const boomhauer = new Boomhauer();
-  boomhauer.execute(event, context);
+  const alexa = Alexa.handler(event, context);
+
+  alexa.APP_ID = APP_ID;
+  alexa.registerHandlers(handlers);
+  alexa.execute();
 };
