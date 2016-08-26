@@ -40,6 +40,6 @@ assets/
 
 # local files
 devlog.txt
-event.json
 .env
+src/test-events/
 

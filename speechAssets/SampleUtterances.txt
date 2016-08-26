@@ -1,3 +1,13 @@
+EpisodeIntent episode
+EpisodeIntent an episode
+EpisodeIntent give me a random episode
+EpisodeIntent give me an episode
+EpisodeIntent tell me an episode to watch
+EpisodeIntent I want an episode to watch
+EpisodeIntent find me an episode
+EpisodeIntent I crave an episode
+EpisodeIntent episode from season {Season}
+EpisodeIntent an episode from {Season}
 EpisodeIntent what is an episode from season {Season}
 EpisodeIntent tell me an episode from season {Season}
 EpisodeIntent ask for an episode from season {Season}
@@ -5,3 +15,41 @@ EpisodeIntent give me an episode from season {Season}
 EpisodeIntent what's an episode from season {Season}
 EpisodeIntent find an episode from season {Season}
 EpisodeIntent find me an episode from season {Season}
+EpisodeIntent episode featuring {Character}
+EpisodeIntent an episode featuring {Character}
+EpisodeIntent episode with {Character}
+EpisodeIntent an episode with {Character}
+EpisodeIntent give me an episode with {Character} in it
+EpisodeIntent give me an episode featuring {Character}
+EpisodeIntent tell me an episode that has {Character} in it
+EpisodeIntent I want an episode with {Character} in it
+EpisodeIntent I want an episode featuring {Character}
+EpisodeIntent what is an episode with {Character}
+EpisodeIntent what is an episode featuring {Character}
+EpisodeIntent tell me an episode with {Character} in it
+EpisodeIntent tell me an episode featuring {Character} in it
+EpisodeIntent ask for an episode with {Character}
+EpisodeIntent what's an episode with {Character} in it
+EpisodeIntent find an episode featuring {Character}
+EpisodeIntent find me an episode with {Character}
+EpisodeIntent give me an episode from season {Season} with {Character}
+EpisodeIntent tell me an episode from season {Season} with {Character}
+EpisodeIntent I want an episode from season {Season} with {Character} in it
+EpisodeIntent I want an episode from season {Season} featuring {Character}
+EpisodeIntent episode from season {Season} with {Character}
+EpisodeIntent what is an episode from season {Season} with {Character}
+EpisodeIntent ask for an episode from season {Season} with {Character}
+EpisodeIntent what's an episode from season {Season} with {Character}
+EpisodeIntent find an episode from season {Season} with {Character}
+EpisodeIntent find me an episode from season {Season} with {Character}
+EpisodeIntent give me an episode with {Character} from season {Season}
+EpisodeIntent tell me an episode with {Character} from season {Season}
+EpisodeIntent I want an episode with {Character} from season {Season}
+EpisodeIntent I want an episode featuring {Character} from season {Season}
+EpisodeIntent what is an episode with {Character} from season {Season}
+EpisodeIntent what is an episode featuring {Character} from season {Season}
+EpisodeIntent tell me an episode featuring {Character} in it from season {Season}
+EpisodeIntent ask for an episode with {Character} from season {Season}
+EpisodeIntent what's an episode with {Character} in it from season {Season}
+EpisodeIntent find an episode featuring {Character} from season {Season}
+EpisodeIntent find me an episode with {Character} from season {Season}
