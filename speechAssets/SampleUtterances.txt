@@ -32,6 +32,7 @@ EpisodeIntent ask for an episode with {Character}
 EpisodeIntent what's an episode with {Character} in it
 EpisodeIntent find an episode featuring {Character}
 EpisodeIntent find me an episode with {Character}
+EpisodeIntent find me an episode featuring {Character}
 EpisodeIntent give me an episode from season {Season} with {Character}
 EpisodeIntent tell me an episode from season {Season} with {Character}
 EpisodeIntent I want an episode from season {Season} with {Character} in it
